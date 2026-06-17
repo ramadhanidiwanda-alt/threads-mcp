@@ -17,7 +17,7 @@ async function fetcher<T>(path: string, params: Record<string, string> = {}): Pr
   return res.json() as Promise<T>;
 }
 
-// ── get single post ──────────────────────────────────
+// -- get single post --------------------------------------------------------
 export async function getPostById(id: string): Promise<ThreadPost> {
   const data = await fetcher<any>(`/${id}`, {
     fields:
@@ -26,7 +26,7 @@ export async function getPostById(id: string): Promise<ThreadPost> {
   return mapPost(data);
 }
 
-// ── get top-level replies ────────────────────────────
+// -- get top-level replies --------------------------------------------------
 export async function getReplies(
   id: string,
   cursor?: string,
@@ -45,7 +45,7 @@ export async function getReplies(
   };
 }
 
-// ── get all replies (conversation, flattened) ────────
+// -- get all replies (conversation, flattened) ------------------------------
 export async function getConversation(
   id: string,
   cursor?: string,
@@ -64,7 +64,7 @@ export async function getConversation(
   };
 }
 
-// ── keyword search ──────────────────────────────────
+// -- keyword search ---------------------------------------------------------
 export async function searchByKeyword(
   keyword: string,
   opts: { type?: "TOP" | "RECENT"; limit?: number } = {},
@@ -85,7 +85,7 @@ export async function searchByKeyword(
   };
 }
 
-// ── mappers ──────────────────────────────────────────
+// -- mappers ----------------------------------------------------------------
 function mapPost(d: any): ThreadPost {
   return {
     id: d.id,
