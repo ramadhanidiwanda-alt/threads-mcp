@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  threads-mcp:
+    build: .
+    container_name: threads-mcp
+    ports:
+      - "8920:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
